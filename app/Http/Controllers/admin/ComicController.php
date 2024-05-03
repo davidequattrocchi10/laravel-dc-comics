@@ -26,7 +26,8 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('admin.comics.create');
     }
 
     /**
@@ -34,6 +35,27 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->all());
+        $dataComic = $request->all();
+
+        // To create a new object to insert into database or do in this way
+        // $comic = new Comic();
+        // $comic->title = $dataComic['title'];
+        // $comic->description = $dataComic['description'];
+        // $comic->thumb = $dataComic['thumb'];
+        // $comic->price = $dataComic['price'];
+        // $comic->series = $dataComic['series'];
+        // $comic->sale_date = $dataComic['sale_date'];
+        // $comic->type = $dataComic['type'];
+        // $comic->save();
+
+        // otherwise use a class but must add fillable inside the class
+        Comic::create($dataComic);
+
+        return to_route('comics.index');
+        //or use redirect
+        // return redirect()->to('admin.comics.index');
     }
 
     /**

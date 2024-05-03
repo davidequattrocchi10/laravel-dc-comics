@@ -25,3 +25,9 @@ Route::get('/comic', [UserController::class, 'comic'])->name('comic');
 // CRUD Operation
 
 Route::resource('comics', ComicController::class);
+
+// or in this way
+
+// Route::get('/admin/comics', [ComicController::class, 'index'])->name('admin.comics.index');
+// Route::get('/admin/comics/{comic}', [ComicController::class, 'show'])->name('admin.comics.show');
+// Route::get('/admin/comics/create', [ComicController::class, 'create'])->name('admin.comics.create');

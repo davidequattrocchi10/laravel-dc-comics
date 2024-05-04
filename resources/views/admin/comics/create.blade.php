@@ -1,6 +1,6 @@
 @extends ('layouts.app')
 
-@section('title', 'Create a new comic')
+@section('title', 'Admin - New Comic')
 
 @section('content')
 

@@ -9,13 +9,21 @@
     <img src="/images/jumbotron.jpg" alt="" style="height:100%; width: 100%; object-fit: cover; object-position: 100% 0%;">
 </div>
 
-<div class="container">
-    <div class="row">
-        <h1>Title</h1>
-        <p>comics comics comics comics</p>
-        <p>comics comics comics comics</p>
-        <p>comics comics comics comics</p>
+<div class="container-fluid bg-primary position-relative">
+    <button type="button" class="border border-light btn btn-primary btn-lg position-absolute top-0 start-0 translate-middle" style="margin-left:150px;">CURRENT SERIES</button>
+    <div class="row p-5">
+        @foreach ($comics as $comic)
+        <div class="col-sm-6 col-md-4 col-lg-2">
+            <div class="polaroid">
+                <img src="{{$comic->thumb}}" alt="{{$comic->title}}" style="width:100%; height:80%;">
+                <div class="polaroid-text">
+                    <div>{{$comic->title}}</div>
+                </div>
+            </div>
+        </div>
+        @endforeach
     </div>
+    <button type="button" class="btn btn-outline-light position-absolute bottom-0 start-50 translate-middle-x" style="margin-bottom:20px;">LOAD MORE</button>
 </div>
 
 

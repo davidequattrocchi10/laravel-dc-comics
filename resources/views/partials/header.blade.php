@@ -1,4 +1,4 @@
-<header class="container text-center py-2">
+<header class="container-fluid text-center bg-white py-2" style="position: sticky;  top: 0;">
     <div class="row align-items-center">
         <div class="col">
             <img src="/images/dc-logo.png" alt="" style="width:20%;">

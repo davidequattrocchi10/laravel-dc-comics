@@ -52,4 +52,30 @@
     </div>
 </div>
 
+
+<div class="container-fluid text-center bg-primary text-white py-3">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-2 mx-2">
+            <img src="/images/buy-comics-digital-comics.png" alt="" style="max-width:20%; height:50px;">
+            <span style="font-size:smaller;"> DIGITAL COMICS</span>
+        </div>
+        <div class="col-2 mx-2">
+            <img src="/images/buy-comics-merchandise.png" alt="" style="max-width:20%; height:50px;">
+            <span style="font-size:smaller;"> DC MERCHANDISE </span>
+        </div>
+        <div class="col-2 mx-2">
+            <img src="/images/buy-comics-subscriptions.png" alt="" style="max-width:20%; height:50px;">
+            <span style="font-size:smaller;"> SUBSCRIPTION</span>
+        </div>
+        <div class="col-2 mx-2">
+            <img src="/images/buy-comics-shop-locator.png" alt="" style="max-width:20%; height:50px;">
+            <span style="font-size:smaller;">COMIC SHOP LOCATOR</span>
+        </div>
+        <div class="col-2 mx-2">
+            <img src="/images/buy-dc-power-visa.svg" alt="" style="max-width:20%; height:50px;">
+            <span style="font-size:smaller;"> DC POWER VISA</span>
+        </div>
+    </div>
+</div>
+
 @endsection

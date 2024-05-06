@@ -11,7 +11,7 @@
 
 <div class="container-fluid bg-primary position-relative">
     <button type="button" class="border border-light btn btn-primary btn-lg position-absolute top-0 start-0 translate-middle" style="margin-left:150px;">CURRENT SERIES</button>
-    <div class="row p-5">
+    <div class="row p-5 justify-content-center">
         @foreach ($comics as $comic)
         <div class="col-sm-6 col-md-4 col-lg-2">
             <div class="polaroid">

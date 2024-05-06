@@ -5,9 +5,8 @@
 
 @section('content')
 
-<div class="container-fluid bg-primary mb-2" style="height:20px;"></div>
 <div class="container py-4">
-    <form class="row border border-primary border-5 g-3 py-4" method="#" action="#">
+    <form class="row border border-primary border-5 g-3 py-5" method="#" action="#">
         @csrf
         <div class="col-md-6">
             <label for="inputName" class="form-label">Name</label>

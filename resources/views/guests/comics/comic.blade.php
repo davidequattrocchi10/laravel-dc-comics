@@ -1,67 +1,63 @@
 @extends('layouts.app')
 
+@section('title', 'Admin - Single Comic')
 
-@section('title', 'Comics')
 
 @section('content')
-<div class="container">
-
-    <div class="me-3 mb-5 d-flex justify-content-end">
-        <select name="type" id="type" class="p-2 text-primary rounded border border-primary">
-            <option selected>All types</option>
-            <option value="comic book">comic book</option>
-            <option value="graphic novel">graphic novel</option>
-        </select>
+<div class="container p-5 my-1 border border-primary text-center">
+    <div class="row">
+        <div class="col-6">
+            <button class="btn btn-primary {{ $comic->id == '1' ? 'disabled': '' }}"> <a class="nav-link" id="prev" href="#" data-current-comic-id="{{ $comic->id }}"> Prev </a> </button>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-primary {{ $comic->id == '13' ? 'disabled': '' }}"> <a class="nav-link" id="next" href="#" data-current-comic-id="{{ $comic->id }}"> Next </a> </button>
+        </div>
     </div>
-    <div class="row justify-content-center">
-        @foreach ($comics as $comic)
-        <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-            <div class="card h-100">
-                <img class="card-img-top" src="{{$comic->thumb}}" alt="Comic Image" style="object-fit: cover; height:55%;">
-                <div class="card-body">
-                    <p class="mb-1 font-monospace fw-bolder fs-6" style="height:16%;">{{$comic->title}}</p>
-                    <p class="mb-1" style="height:22%;"> {{Str::limit($comic->description, 100)}} </p>
-                    <p class="mb-1" style="height:10%;">Price: ${{$comic->price}}</p>
-                    <p class="mb-1" style="height:10%;">Sale date: {{$comic->sale_date}}</p>
-                    <p class="mb-1" style="height:10%;" data-types="{{$comic->type}}">Type: {{$comic->type}}</p>
-                    <p class="mb-1" style="height:15%;">Series: {{$comic->series}}</p>
-                    <a href="{{route('comics.show', $comic)}}" class="btn btn-primary" style="height:11%;"> View Comic</a>
-                </div>
 
+
+    <div class="card my-3 mx-auto border border-primary" style="max-width:100%">
+        <div class="row w-100 h-100 g-0">
+            <div class="col-md-6 py-3 px-1 my-auto">
+                <img src="{{$comic->thumb}}" class="img-thumbnail" alt="{{$comic->title}}" style="width:90%; max-width:100%">
+            </div>
+            <div class="col-md-6 my-auto">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <p class="card-text">{{$comic->description}}</p>
+                    <p class="card-text"><strong> Price: </strong>{{$comic->price}}</p>
+                    <p class="card-text"><small class="text-body-secondary"> <strong>Sale date: </strong> {{$comic->sale_date}} </small></p>
+                    <p class="card-text"><small class="text-body-secondary"> <strong>Type: </strong>{{$comic->type}}</small></p>
+                    <p class="card-text"><small class="text-body-secondary"> <strong>Series: </strong>{{$comic->series}}</small></p>
+                </div>
             </div>
         </div>
-        @endforeach
+        <input name="cart" id="cart" class="btn btn-primary align-items-end" type="button" value="Add to cart" />
     </div>
+
+
 </div>
 
 
+
 <script>
-    // Select element and apply the event listener
-    const selectFilter = document.getElementById("type");
-    selectFilter.addEventListener("change", filterComics);
+    const nextPage = document.getElementById("next");
+    nextPage.addEventListener("click", function(event) {
+        event.preventDefault();
+        const currentComicId = parseInt(nextPage.dataset.currentComicId);
+        const nextComicId = currentComicId === 10 ? currentComicId + 3 : currentComicId + 1; //Next Comic 
+        const nextComicUrl = `{{ route('comic', '') }}/${nextComicId}`; //Get url with Template Literals  
 
-    /**
-     * Filters comic cards based on the selected type.
-     *
-     * @param {Event} event The event object triggered by the change in the select element.
-     *
-     * @returns {void} nothing is returned, but the function modifies the display styles of comic card elements
-     */
-    function filterComics(event) {
-        const selectedType = event.target.value;
-        // console.log(selectedType);
-        const comicCards = document.querySelectorAll(".col-md-6.col-lg-4.col-xl-3.mb-4");
-        comicCards.forEach(comicCard => {
-            const comicTypeElement = comicCard.querySelector(".card-body p:nth-child(5)"); //type is displayed in the 5th paragraph
-            const comicType = comicTypeElement.dataset.types;
-            console.log(comicType);
-            if (selectedType === "All types" || comicType === selectedType) {
-                comicCard.style.display = "block"; // Show card if matches filter
-            } else {
-                comicCard.style.display = "none"; // Hide card if doesn't match filter
-            }
-        });
-    }
+        window.location.href = nextComicUrl; // Redirect to the next comic's page
+    });
+
+    const prevPage = document.getElementById("prev");
+    prevPage.addEventListener("click", function(event) {
+        event.preventDefault();
+        const currentComicId = parseInt(prevPage.dataset.currentComicId);
+        const prevComicId = currentComicId === 13 ? currentComicId - 3 : currentComicId - 1; //Previous Comic
+        const prevComicUrl = `{{ route('comic', '') }}/${prevComicId}`; //Get url with Template Literals  
+
+        window.location.href = prevComicUrl; // Redirect to the previous comic's page
+    });
 </script>
-
 @endsection

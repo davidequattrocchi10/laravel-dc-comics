@@ -11,7 +11,7 @@ class UserController extends Controller
     /**
      * Display welcome page for the user.
      */
-    public function welcome()
+    public function index()
     {
 
         $comics = Comic::all();
@@ -32,11 +32,21 @@ class UserController extends Controller
     /**
      * Display page with comics for the user.
      */
-    public function comic()
+    public function allComics()
     {
 
         $comics = Comic::all();
 
-        return view('guests.comics.comic', compact('comics'));
+        return view('guests.comics.allComics', compact('comics'));
+    }
+
+
+    /**
+     * Display page with a comic for the user.
+     */
+    public function comic(Comic $comic)
+    {
+
+        return view('guests.comics.comic', compact('comic'));
     }
 }

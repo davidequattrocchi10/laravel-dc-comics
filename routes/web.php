@@ -16,11 +16,13 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', [UserController::class, 'welcome'])->name('welcome');
+Route::get('/', [UserController::class, 'index'])->name('welcome');
 
 Route::get('/signUp', [UserController::class, 'signUp'])->name('signUp');
 
-Route::get('/comic', [UserController::class, 'comic'])->name('comic');
+Route::get('/allComics', [UserController::class, 'allComics'])->name('allComics');
+
+Route::get('/comic/{comic}', [UserController::class, 'comic'])->name('comic');
 
 // CRUD Operation
 

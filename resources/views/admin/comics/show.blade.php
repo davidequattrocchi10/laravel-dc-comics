@@ -5,6 +5,7 @@
 
 @section('content')
 <div class="container p-5 my-1 border border-primary text-center">
+
     <div class="row">
         <div class="col-6">
             <button class="btn btn-primary {{ $comic->id == '1' ? 'disabled': '' }}"> <a class="nav-link" id="prev" href="#" data-current-comic-id="{{ $comic->id }}"> Prev </a> </button>
@@ -32,6 +33,8 @@
             </div>
         </div>
     </div>
+
+    <a href="{{route('comics.index')}}"><button type="submit" class="btn btn-primary">Come Back</button></a>
 
 </div>
 </div>

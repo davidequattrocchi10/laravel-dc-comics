@@ -7,7 +7,7 @@
 
 <h3 class="p-1 bg-primary text-white text-center">COMICS</h3>
 
-<div class="container position-relative pb-2">
+<div class="container position-relative pb-2" style="min-height: 65vh;">
 
     <a class="btn btn-primary rounded-pill position-absolute bottom-0 end-0 m-3" href="{{route('comics.create')}}" role="button">ADD +</a>
 
@@ -22,6 +22,7 @@
                     <th scope="col">SALE DATE</th>
                     <th scope="col">TYPE</th>
                     <th scope="col">VIEW</th>
+                    <th scope="col">EDIT</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,11 +34,14 @@
                     <td>{{$comic->series}}</td>
                     <td>{{$comic->sale_date}}</td>
                     <td>{{$comic->type}}</td>
-                    <td><a href="{{route('comics.show', $comic)}}"> View Comic</a></td>
+                    <td><a href="{{route('comics.show', $comic)}}"> View</a></td>
+                    <td><a href="{{route('comics.edit', $comic)}}"> Edit</a></td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+
+        {{$comics->links('pagination::bootstrap-5')}}
     </div>
 </div>
 

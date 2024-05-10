@@ -36,8 +36,23 @@ class ComicController extends Controller
     {
 
         // dd($request->all());
-        $dataComic = $request->all();
+        // Validate data
+        $validate_data = $request->validate([
+            'title' => 'required|max:100',
+            'description' => 'nullable',
+            'thumb' => 'required|max:150',
+            'price' => 'required|decimal:2',
+            'series' => 'max:100',
+            'sale_date' => 'date_format:Y-m-d',
+            'type' => 'max:80',
 
+        ]);
+
+        //dd($validate_data);
+        //$dataComic = $request->all();
+
+
+        //* Create a data
         // To create a new object to insert into database or do in this way
         // $comic = new Comic();
         // $comic->title = $dataComic['title'];
@@ -48,10 +63,11 @@ class ComicController extends Controller
         // $comic->sale_date = $dataComic['sale_date'];
         // $comic->type = $dataComic['type'];
         // $comic->save();
-
         // otherwise use a class but must add fillable inside the class
-        Comic::create($dataComic);
+        //*
+        Comic::create($validate_data);
 
+        //* Redirect the user to a get view (from Post to Get)
         return to_route('comics.index');
         //or use redirect
         // return redirect()->to('admin.comics.index');
@@ -83,7 +99,19 @@ class ComicController extends Controller
     public function update(Request $request, Comic $comic)
     {
         // dd($request->all(), $comic);
-        $comic->update($request->all());
+        // Validate data
+        $validate_old_data = $request->validate([
+            'title' => 'required|max:100',
+            'description' => 'nullable',
+            'thumb' => 'required|max:150',
+            'price' => 'required|decimal:2',
+            'series' => 'max:100',
+            'sale_date' => 'date_format:Y-m-d',
+            'type' => 'max:80',
+
+        ]);
+
+        $comic->update($validate_old_data);
         return to_route('comics.index');
     }
 
@@ -92,6 +120,7 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return to_route('comics.index');
     }
 }
